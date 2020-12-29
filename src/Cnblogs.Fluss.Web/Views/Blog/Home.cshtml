@@ -5,3 +5,10 @@
 }
 
 <h1>Welcome</h1>
+
+<ul>
+    @foreach (var post in Model.Posts)
+    {
+        <li><a href="/p/@(post.Id).html">@post.Title</a></li>
+    }
+</ul>

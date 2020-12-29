@@ -1,28 +1,26 @@
 using System;
-using System.Collections.Generic;
-using Cnblogs.Fluss.Domain.Abstractions;
 
 namespace Cnblogs.Fluss.Domain.Entities
 {
     /// <summary>
-    /// 博客设置。
+    /// 博文-内容块关联类。
     /// </summary>
-    public class BlogSite : Entity<long>, IAggregateRoot
+    public class PostContent
     {
         /// <summary>
-        /// 博客标题。
+        /// 博文 Id。
         /// </summary>
-        public string Title { get; set; } = string.Empty;
+        public long PostId { get; set; }
 
         /// <summary>
-        /// 博客副标题。
+        /// 内容块 Id。
         /// </summary>
-        public string SubTitle { get; set; } = string.Empty;
+        public Guid ContentBlockId { get; set; }
 
         /// <summary>
-        /// 博客首页分页列表数。
+        /// 出现次序。
         /// </summary>
-        public int HomePageSize { get; set; } = 15;
+        public int Order { get; set; }
 
         /// <summary>
         /// 软删除标记。
@@ -30,23 +28,23 @@ namespace Cnblogs.Fluss.Domain.Entities
         public bool IsExist { get; set; } = true;
 
         /// <summary>
-        /// 博客创建时间。
+        /// 添加日期。
         /// </summary>
         public DateTimeOffset DateCreated { get; set; } = DateTimeOffset.Now;
 
         /// <summary>
-        /// 博客上次更新时间。
+        /// 更新日期。
         /// </summary>
         public DateTimeOffset DateUpdated { get; set; } = DateTimeOffset.Now;
 
         /// <summary>
-        /// 博文列表。
+        /// 博文。
         /// </summary>
-        public List<BlogPost> BlogPosts { get; set; } = null!;
+        public BlogPost BlogPost { get; set; } = null!;
 
         /// <summary>
         /// 内容块。
         /// </summary>
-        public List<ContentBlock> ContentBlocks { get; set; } = null!;
+        public ContentBlock ContentBlock { get; set; } = null!;
     }
 }

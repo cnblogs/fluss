@@ -10,6 +10,11 @@ namespace Cnblogs.Fluss.Domain.Entities
     public class BlogPost : Entity<long>
     {
         /// <summary>
+        /// 博客 Id。
+        /// </summary>
+        public long BlogId { get; set; }
+
+        /// <summary>
         /// 博文标题。
         /// </summary>
         public string Title { get; set; } = string.Empty;
@@ -43,6 +48,11 @@ namespace Cnblogs.Fluss.Domain.Entities
         /// 软删除标记。
         /// </summary>
         public bool IsExist { get; set; } = true;
+
+        /// <summary>
+        /// 所属博客。
+        /// </summary>
+        public BlogSite BlogSite { get; set; } = null!;
 
         /// <summary>
         /// 博文包含的内容块。

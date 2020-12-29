@@ -5,7 +5,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.1" />
+      <PackageReference Include="Mapster" Version="7.0.1" />
+      <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Cnblogs.Fluss.Domain\Cnblogs.Fluss.Domain.csproj" />
     </ItemGroup>
 
 </Project>
