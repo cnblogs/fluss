@@ -186,6 +186,7 @@ ClientBin/
 *.pfx
 *.publishsettings
 node_modules/
+dist/
 orleans.codegen.cs
 
 # RIA/Silverlight projects
@@ -252,3 +253,4 @@ appsettings.Production.json
 **/wwwroot/assets/
 
 .idea/
+/src/Cnblogs.Fluss.Web/wwwroot/dist/

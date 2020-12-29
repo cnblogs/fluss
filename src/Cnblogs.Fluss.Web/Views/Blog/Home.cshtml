@@ -4,11 +4,17 @@
     Layout = "_BlogLayout";
 }
 
-<h1>Welcome</h1>
+<aside class="home-blog-info">
+    <h1 class="home-blog-title">@Model.BlogSiteViewModel.Title</h1>
+    <h2 class="home-blog-subtitle">@Model.BlogSiteViewModel.SubTitle</h2>
+</aside>
 
-<ul>
+<main class="home-post-list">
     @foreach (var post in Model.Posts)
     {
-        <li><a href="/p/@(post.Id).html">@post.Title</a></li>
+        <article class="home-post-item">
+            <a class="home-post-title" href="/p/@(post.Id).html">@post.Title</a>
+            <a class="home-post-desc" href="/p/@(post.Id).html">@post.Description</a>
+        </article>
     }
-</ul>
+</main>
