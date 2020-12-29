@@ -8,4 +8,8 @@
       <_ContentIncludedByDefault Remove="wwwroot\js\site.js" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Cnblogs.Fluss.Infrastructure\Cnblogs.Fluss.Infrastructure.csproj" />
+    </ItemGroup>
+
 </Project>
