@@ -18,8 +18,9 @@ namespace Cnblogs.Fluss.Web.Controllers
         [Route("")]
         public async Task<IActionResult> Home()
         {
+            var blog = await _mediator.Send(new GetBlogSite(1));
             var posts = await _mediator.Send(new GetBlogHomePosts(1, 15, 1));
-            var page = new HomeBlogPage(1, posts) { PageTitle = "首页" };
+            var page = new HomeBlogPage(1, posts, blog) { PageTitle = blog.Title };
             return View(page);
         }
 

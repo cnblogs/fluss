@@ -9,6 +9,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5E8FFA1E-22D5-4103-8998-0F14BC03ED4F}"
 ProjectSection(SolutionItems) = preProject
 	Directory.Build.props = Directory.Build.props
+	.gitignore = .gitignore
 EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cnblogs.Fluss.Domain", "src\Cnblogs.Fluss.Domain\Cnblogs.Fluss.Domain.csproj", "{403EFDD4-3933-488E-AB93-4229871C65B7}"

@@ -4,5 +4,8 @@
     Layout = "_BlogLayout";
 }
 
-<h1>@Model.Post.Title</h1>
-<p>@Model.Post.Content</p>
+<article>
+    <h1 class="post-detail-title">@Model.Post.Title</h1>
+    <time datetime="@Model.Post.DateCreated.ToString("s")" class="post-detail-create-date">@Model.Post.DateCreated.ToString("yyyy-M-d")</time>
+    <main class="post-detail-body">@Html.Raw(Model.Post.Content)</main>
+</article>
