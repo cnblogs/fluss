@@ -4,15 +4,9 @@ namespace Cnblogs.Fluss.Domain.Abstractions
 {
     public abstract class Entity<TKey>
     {
-        public TKey Id { get; set; }
+        public TKey Id { get; set; } = default!;
 
         private readonly List<IDomainEvent> _events = new();
-
-        protected Entity(TKey id)
-        {
-            Id = id;
-        }
-
         public IReadOnlyCollection<IDomainEvent> DomainEvents => _events.AsReadOnly();
 
         public void AddDomainEvent(IDomainEvent eventItem)
