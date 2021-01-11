@@ -5,6 +5,5 @@ namespace Cnblogs.Fluss.FunctionalTests
 {
     public class FlussWebApplicationFactory : WebApplicationFactory<Startup>
     {
-        
     }
 }
