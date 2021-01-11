@@ -20,7 +20,12 @@ namespace Cnblogs.Fluss.Domain.Entities
         public Guid? Refer { get; set; }
 
         /// <summary>
-        /// 内容。
+        /// 可编辑的文本。
+        /// </summary>
+        public string Raw { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 可显示的内容。
         /// </summary>
         public string Content { get; set; } = string.Empty;
 
@@ -50,8 +55,8 @@ namespace Cnblogs.Fluss.Domain.Entities
         public BlogSite BlogSite { get; set; } = null!;
 
         /// <summary>
-        /// 使用该内容块的博文。
+        /// 使用该内容块的博文记录。
         /// </summary>
-        public List<BlogPost> BlogPosts { get; set; } = null!;
+        public List<PostContentRecord> PostContentRecords { get; set; } = null!;
     }
 }
