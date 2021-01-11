@@ -20,8 +20,6 @@
     "filemanager-webpack-plugin": "^3.0.0",
     "mini-css-extract-plugin": "^1.3.3",
     "postcss-loader": "^4.1.0",
-    "sass": "^1.30.0",
-    "sass-loader": "^10.1.0",
     "tailwindcss": "^2.0.2",
     "webpack": "^5.11.1",
     "webpack-cli": "^4.3.0"

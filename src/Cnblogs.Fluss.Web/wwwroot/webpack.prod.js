@@ -1,6 +1,7 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 module.exports = () => {
   process.env.NODE_ENV = "production";
   return {
@@ -39,6 +40,7 @@ module.exports = () => {
       new MiniCssExtractPlugin({
         filename: "[name].min.css",
       }),
+      new CleanWebpackPlugin()  
     ],
     optimization: {
       minimize: true,
