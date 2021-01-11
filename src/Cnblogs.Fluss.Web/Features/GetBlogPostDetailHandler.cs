@@ -34,6 +34,7 @@ namespace Cnblogs.Fluss.Web.Features
                 .FirstOrDefaultAsync(cancellationToken);
             var model = post.Adapt<BlogPostDetailViewModel>();
             model.Content = post.ContentRecords
+                .OrderBy(c => c.Order)
                 .Aggregate(
                     new StringBuilder(),
                     (sb, c) => c.ContentBlock.ReferringBlock == null
