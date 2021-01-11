@@ -55,8 +55,8 @@ namespace Cnblogs.Fluss.Domain.Entities
         public BlogSite BlogSite { get; set; } = null!;
 
         /// <summary>
-        /// 博文包含的内容块。
+        /// 博文内容块记录。
         /// </summary>
-        public List<ContentBlock> ContentBlocks { get; set; } = null!;
+        public List<PostContentRecord> ContentRecords { get; set; } = null!;
     }
 }

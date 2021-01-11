@@ -1,11 +1,12 @@
 using System;
+using Cnblogs.Fluss.Domain.Abstractions;
 
 namespace Cnblogs.Fluss.Domain.Entities
 {
     /// <summary>
     /// 博文-内容块关联类。
     /// </summary>
-    public class PostContent
+    public class PostContentRecord : Entity<int>
     {
         /// <summary>
         /// 博文 Id。
