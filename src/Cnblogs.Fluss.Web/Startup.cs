@@ -43,7 +43,6 @@ namespace Cnblogs.Fluss.Web
         {
             if (env.IsDevelopment())
             {
-                SeedData.Seed(context);
                 app.UseDeveloperExceptionPage();
             }
             else
@@ -52,6 +51,7 @@ namespace Cnblogs.Fluss.Web
                 app.UseHsts();
             }
 
+            SeedData.Seed(context);
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

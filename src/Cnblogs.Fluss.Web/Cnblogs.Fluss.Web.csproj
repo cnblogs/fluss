@@ -3,13 +3,11 @@
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
         <WwwRoot>wwwroot\</WwwRoot>
+        <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
+        <UserSecretsId>79ea6ce1-f60a-4963-9e62-bc02df80aa17</UserSecretsId>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <DockerfileContext>..\..</DockerfileContext>
     </PropertyGroup>
-
-    <ItemGroup>
-      <_ContentIncludedByDefault Remove="wwwroot\js\site.js" />
-      <_ContentIncludedByDefault Remove="wwwroot\dist\blog.js" />
-      <_ContentIncludedByDefault Remove="wwwroot\dist\blog.min.css" />
-    </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Cnblogs.Fluss.Infrastructure\Cnblogs.Fluss.Infrastructure.csproj" />
@@ -17,6 +15,10 @@
 
     <ItemGroup>
       <Folder Include="Middleware" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.10" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(WwwRoot)node_modules') ">
