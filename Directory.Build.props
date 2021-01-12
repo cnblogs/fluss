@@ -3,7 +3,7 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
     
-    <ItemGroup>
+    <ItemGroup Condition="'$(MSBuildProjectExtension)' != '.dcproj'">
         <PackageReference Include="Cnblogs.CodeQuality" Version="1.1.0">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
