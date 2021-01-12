@@ -1,6 +1,7 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 module.exports = () => {
   process.env.NODE_ENV = "production";
@@ -40,7 +41,12 @@ module.exports = () => {
       new MiniCssExtractPlugin({
         filename: "[name].min.css",
       }),
-      new CleanWebpackPlugin()  
+      new CopyWebpackPlugin({
+        patterns: [
+          { from: "./favicon.ico" }
+        ]
+      }),
+      new CleanWebpackPlugin()
     ],
     optimization: {
       minimize: true,
