@@ -16,11 +16,6 @@
             <option value="docker-compose.override.yml" />
           </list>
         </option>
-        <option name="services">
-          <list>
-            <option value="cnblogs.fluss.web" />
-          </list>
-        </option>
         <option name="sourceFilePath" value="docker-compose.yml" />
       </settings>
     </deployment>

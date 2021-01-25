@@ -2,12 +2,11 @@
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
-
         <IsPackable>false</IsPackable>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\src\Cnblogs.Fluss.Web\Cnblogs.Fluss.Web.csproj" />
+        <ProjectReference Include="..\..\src\Cnblogs.Fluss.Web\Cnblogs.Fluss.Web.csproj"/>
     </ItemGroup>
 
 </Project>

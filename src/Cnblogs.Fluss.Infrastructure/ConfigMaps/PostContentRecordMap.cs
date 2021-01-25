@@ -14,6 +14,8 @@ namespace Cnblogs.Fluss.Infrastructure.ConfigMaps
             builder.Property(p => p.DateCreated).HasDefaultValueSql("CURRENT_TIMESTAMP");
             builder.Property(p => p.DateUpdated).HasDefaultValueSql("CURRENT_TIMESTAMP");
             builder.HasQueryFilter(p => p.IsExist);
+            builder.HasIndex(p => new { p.PostId, p.IsExist });
+            builder.HasIndex(p => new { p.ContentBlockId, p.IsExist });
         }
     }
 }

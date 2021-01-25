@@ -1,8 +1,13 @@
-version: '3.4'
+version: '3.9'
 
 services:
-  cnblogs.fluss.web:
+  web:
     image: cnblogsflussweb
     build:
       context: .
       dockerfile: src/Cnblogs.Fluss.Web/Dockerfile
+    depends_on:
+      - db
+  db:
+    image: mcr.microsoft.com/mssql/server
+    

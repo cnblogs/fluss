@@ -1,6 +1,6 @@
-version: '3.4'
+version: '3.9'
 services:
- cnblogs.fluss.web:
+ web:
    environment:
      - ASPNETCORE_ENVIRONMENT=Docker
      - ASPNETCORE_URLS=http://+:80
@@ -9,3 +9,9 @@ services:
    volumes:
      - ~/.aspnet/https:/root/.aspnet/https:ro
      - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
+ db:
+   environment:
+     - ACCEPT_EULA=Y
+     - MSSQL_SA_PASSWORD=YourStrong-Passw0rd
+   ports:
+     - "5433:1433"

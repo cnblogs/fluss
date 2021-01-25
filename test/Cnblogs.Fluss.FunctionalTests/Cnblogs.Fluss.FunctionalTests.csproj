@@ -5,11 +5,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="5.0.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="5.0.1"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\src\Cnblogs.Fluss.Web\Cnblogs.Fluss.Web.csproj" />
+        <ProjectReference Include="..\..\src\Cnblogs.Fluss.Web\Cnblogs.Fluss.Web.csproj"/>
     </ItemGroup>
 
 </Project>

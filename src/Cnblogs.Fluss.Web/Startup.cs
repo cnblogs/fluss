@@ -1,3 +1,5 @@
+using System;
+using System.Reflection;
 using Cnblogs.Fluss.Domain;
 using Cnblogs.Fluss.Domain.Entities;
 using Cnblogs.Fluss.Infrastructure;
@@ -5,7 +7,6 @@ using Cnblogs.Fluss.Infrastructure.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,12 +28,16 @@ namespace Cnblogs.Fluss.Web
         {
             services.AddMediatR(typeof(BlogSite).Assembly, typeof(Startup).Assembly);
 
-            var conn = new SqliteConnection("Filename=:memory:;Foreign Keys=False");
-            conn.Open();
             services.AddDbContext<BlogDbContext>(
                 o =>
                 {
-                    o.UseSqlite(conn);
+                    o.UseSqlServer(
+                        Configuration.GetConnectionString("blog"),
+                        option =>
+                        {
+                            option.MigrationsAssembly(typeof(BlogDbContext).GetTypeInfo().Assembly.GetName().Name);
+                            option.EnableRetryOnFailure(3, TimeSpan.FromSeconds(5), null);
+                        });
                 });
             services.AddScoped<IBlogSiteRepository, BlogSiteRepository>();
             services.AddControllersWithViews();
