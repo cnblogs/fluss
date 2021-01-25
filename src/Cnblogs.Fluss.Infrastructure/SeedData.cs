@@ -1,13 +1,33 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Cnblogs.Fluss.Domain.Entities;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Polly;
 
 namespace Cnblogs.Fluss.Infrastructure
 {
     public static class SeedData
     {
+        public static void MigrateAndSeed(BlogDbContext context)
+        {
+            var policy = CreatePolicy();
+            policy.Execute(
+                () =>
+                {
+                    context.Database.Migrate();
+                    if (context.Set<BlogSite>().Any())
+                    {
+                        return;
+                    }
+
+                    Seed(context);
+                });
+        }
+
         public static void Seed(BlogDbContext context)
         {
-            context.Database.EnsureCreated();
             var blog = new BlogSite { Title = "Fluss", SubTitle = "Cnblogs" };
             context.Add(blog);
             context.SaveChanges();
@@ -27,6 +47,11 @@ namespace Cnblogs.Fluss.Infrastructure
             var referBlock = new ContentBlock { BlogId = blog.Id, Refer = body.Id };
             post.ContentRecords.Add(new PostContentRecord { BlogPost = post, ContentBlock = referBlock, Order = 1 });
             context.SaveChanges();
+        }
+
+        private static Policy CreatePolicy()
+        {
+            return Policy.Handle<SqlException>().WaitAndRetry(5, _ => TimeSpan.FromSeconds(5));
         }
     }
 }

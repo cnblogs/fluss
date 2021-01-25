@@ -14,8 +14,10 @@ namespace Cnblogs.Fluss.Infrastructure.ConfigMaps
             builder.Property(b => b.Id).ValueGeneratedOnAdd();
             builder.Property(b => b.DateCreated).HasDefaultValueSql("CURRENT_TIMESTAMP");
             builder.Property(b => b.DateUpdated).HasDefaultValueSql("CURRENT_TIMESTAMP").ValueGeneratedOnUpdate();
-            builder.HasMany(b => b.BlogPosts).WithOne(p => p.BlogSite).HasForeignKey(p => p.BlogId);
-            builder.HasMany(b => b.ContentBlocks).WithOne(c => c.BlogSite).HasForeignKey(c => c.BlogId);
+            builder.HasMany(b => b.BlogPosts).WithOne(p => p.BlogSite).HasForeignKey(p => p.BlogId)
+                .OnDelete(DeleteBehavior.NoAction);
+            builder.HasMany(b => b.ContentBlocks).WithOne(c => c.BlogSite).HasForeignKey(c => c.BlogId)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }
