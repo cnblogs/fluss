@@ -27,18 +27,15 @@ namespace Cnblogs.Fluss.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMediatR(typeof(BlogSite).Assembly, typeof(Startup).Assembly);
-
             services.AddDbContext<BlogDbContext>(
-                o =>
-                {
-                    o.UseSqlServer(
-                        Configuration.GetConnectionString("blog"),
-                        option =>
-                        {
-                            option.MigrationsAssembly(typeof(BlogDbContext).GetTypeInfo().Assembly.GetName().Name);
-                            option.EnableRetryOnFailure(3, TimeSpan.FromSeconds(5), null);
-                        });
-                });
+                option => option.UseSqlServer(
+                    Configuration.GetConnectionString("blog"),
+                    sqlServerOption =>
+                    {
+                        sqlServerOption.MigrationsAssembly(typeof(BlogDbContext).GetTypeInfo().Assembly.GetName().Name);
+                        sqlServerOption.EnableRetryOnFailure(3, TimeSpan.FromSeconds(5), null);
+                    }));
+
             services.AddScoped<IBlogSiteRepository, BlogSiteRepository>();
             services.AddControllersWithViews();
         }
@@ -56,7 +53,11 @@ namespace Cnblogs.Fluss.Web
                 app.UseHsts();
             }
 
-            SeedData.Seed(context);
+            if (env.IsEnvironment("Test") == false)
+            {
+                SeedData.MigrateAndSeed(context);
+            }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
