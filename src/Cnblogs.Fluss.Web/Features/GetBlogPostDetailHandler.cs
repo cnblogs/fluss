@@ -27,19 +27,16 @@ namespace Cnblogs.Fluss.Web.Features
             var post = await _blogSiteRepository.NoTrackingQueryable
                 .Where(b => b.Id == request.BlogId)
                 .SelectMany(b => b.BlogPosts)
-                .Include(p => p.ContentRecords)
-                .ThenInclude(c => c.ContentBlock)
-                .ThenInclude(c => c.ReferringBlock)
+                .Include(p => p.ContentBlocks)
+                .ThenInclude(c => c.RenderConfigs)
                 .Where(p => p.Id == request.PostId)
                 .FirstOrDefaultAsync(cancellationToken);
             var model = post.Adapt<BlogPostDetailViewModel>();
-            model.Content = post.ContentRecords
+            model.Content = post.ContentBlocks
                 .OrderBy(c => c.Order)
                 .Aggregate(
                     new StringBuilder(),
-                    (sb, c) => c.ContentBlock.ReferringBlock == null
-                        ? sb.AppendLine(c.ContentBlock.Content)
-                        : sb.AppendLine(c.ContentBlock.ReferringBlock.Content))
+                    (sb, c) => sb.AppendLine(c.Content))
                 .ToString();
             return model;
         }

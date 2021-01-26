@@ -57,6 +57,11 @@ namespace Cnblogs.Fluss.Domain.Entities
         /// <summary>
         /// 博文内容块记录。
         /// </summary>
-        public List<PostContentRecord> ContentRecords { get; set; } = null!;
+        public List<ContentBlock> ContentBlocks { get; set; } = null!;
+
+        /// <summary>
+        /// 博文内容渲染记录。
+        /// </summary>
+        public List<ContentRenderConfig> ContentRenderConfigs { get; set; } = null!;
     }
 }
