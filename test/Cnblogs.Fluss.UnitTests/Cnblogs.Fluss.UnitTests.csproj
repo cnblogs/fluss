@@ -6,7 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\src\Cnblogs.Fluss.Web\Cnblogs.Fluss.Web.csproj"/>
+        <ProjectReference Include="..\..\src\Cnblogs.Fluss.Web\Cnblogs.Fluss.Web.csproj" />
     </ItemGroup>
 
 </Project>
