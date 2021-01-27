@@ -18,11 +18,11 @@ namespace Cnblogs.Fluss.FunctionalTests
         {
             // Arrange
             var client = _fixture.CreateClient();
-            
+
             // Act
             var response = await client.GetAsync("/");
             var content = await response.Content.ReadAsStringAsync();
-            
+
             // Assert
             response.IsSuccessStatusCode.Should().BeTrue();
             content.Should().NotBeNullOrEmpty();
@@ -33,7 +33,7 @@ namespace Cnblogs.Fluss.FunctionalTests
         {
             // Arrange
             var client = _fixture.CreateClient();
-            
+
             // Act
             var response = await client.GetAsync("/p/1.html");
             var content = await response.Content.ReadAsStringAsync();

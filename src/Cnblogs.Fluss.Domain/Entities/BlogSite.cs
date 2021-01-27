@@ -5,47 +5,47 @@ using Cnblogs.Fluss.Domain.Abstractions;
 namespace Cnblogs.Fluss.Domain.Entities
 {
     /// <summary>
-    /// 博客设置。
+    /// A single blog and its configs.
     /// </summary>
     public class BlogSite : Entity<long>, IAggregateRoot
     {
         /// <summary>
-        /// 博客标题。
+        /// Blog title.
         /// </summary>
         public string Title { get; set; } = string.Empty;
 
         /// <summary>
-        /// 博客副标题。
+        /// Blog subtitle.
         /// </summary>
         public string SubTitle { get; set; } = string.Empty;
 
         /// <summary>
-        /// 博客首页分页列表数。
+        /// The page size for blog home page.
         /// </summary>
         public int HomePageSize { get; set; } = 15;
 
         /// <summary>
-        /// 软删除标记。
+        /// Soft-deletion mark.
         /// </summary>
         public bool IsExist { get; set; } = true;
 
         /// <summary>
-        /// 博客创建时间。
+        /// Creation time for the blog.
         /// </summary>
         public DateTimeOffset DateCreated { get; set; } = DateTimeOffset.Now;
 
         /// <summary>
-        /// 博客上次更新时间。
+        /// Last update time for the blog.
         /// </summary>
         public DateTimeOffset DateUpdated { get; set; } = DateTimeOffset.Now;
 
         /// <summary>
-        /// 博文列表。
+        /// The posts it contains.
         /// </summary>
         public List<BlogPost> BlogPosts { get; set; } = null!;
 
         /// <summary>
-        /// 内容块。
+        /// The content is contains.
         /// </summary>
         public List<ContentBlock> ContentBlocks { get; set; } = null!;
     }

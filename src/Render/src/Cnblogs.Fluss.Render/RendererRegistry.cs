@@ -4,20 +4,23 @@ using System.Collections.Generic;
 namespace Cnblogs.Fluss.Render
 {
     /// <summary>
-    /// 渲染器缓存，需要被注入为 Singleton
+    /// Renderer registry, needs to be injected with singleton lifetime
     /// </summary>
     public class RendererRegistry
     {
-        private readonly Dictionary<Guid, Type> _registry = new();
+        /// <summary>
+        /// The registry contains id and type.
+        /// </summary>
+        public Dictionary<Guid, Type> Registry { get; set; } = new();
 
-        public bool TryAdd(Guid id, Type renderer)
-        {
-            return _registry.TryAdd(id, renderer);
-        }
-
+        /// <summary>
+        /// Get renderer type based on renderer id, if renderer is not exists, <see langword="null"/> is returned
+        /// </summary>
+        /// <param name="id">renderer id.</param>
+        /// <returns>The renderer type associates with <paramref name="id"/>, if no renderer type is found then <see langword="null"/> is returned.</returns>
         public Type? Get(Guid id)
         {
-            return _registry.ContainsKey(id) ? _registry[id] : null;
+            return Registry.ContainsKey(id) ? Registry[id] : null;
         }
     }
 }

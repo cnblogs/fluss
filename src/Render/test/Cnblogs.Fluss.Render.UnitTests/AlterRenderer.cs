@@ -1,12 +1,8 @@
 using System.Threading.Tasks;
 
-namespace Cnblogs.Fluss.Render
+namespace Cnblogs.Fluss.Render.UnitTests
 {
-    /// <summary>
-    /// Default renderer, render input as is.
-    /// </summary>
-    [RendererId("00000000-0000-0000-0000-000000000000")]
-    public class DefaultRenderer : IRenderer
+    internal class AlterRenderer : IRenderer
     {
         /// <inheritdoc />
         public async Task<string> RenderAsync(string input, string config)

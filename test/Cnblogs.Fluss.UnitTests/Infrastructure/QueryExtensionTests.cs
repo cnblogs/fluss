@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Cnblogs.Fluss.Infrastructure;
 using FluentAssertions;
@@ -15,10 +16,10 @@ namespace Cnblogs.Fluss.UnitTests.Infrastructure
         {
             // Arrange
             var queryable = GetTestQueryable();
-            
+
             // Act
-            Action act = () => queryable.Page(pageIndex, 10);
-            
+            Func<List<int>> act = () => queryable.Page(pageIndex, 10).ToList();
+
             // Assert
             act.Should().Throw<ArgumentOutOfRangeException>();
         }
@@ -30,10 +31,10 @@ namespace Cnblogs.Fluss.UnitTests.Infrastructure
         {
             // Arrange
             var queryable = GetTestQueryable();
-            
+
             // Act
-            Action act = () => queryable.Page(1, pageSize);
-            
+            Func<List<int>> act = () => queryable.Page(1, pageSize).ToList();
+
             // Assert
             act.Should().Throw<ArgumentOutOfRangeException>();
         }
@@ -46,10 +47,10 @@ namespace Cnblogs.Fluss.UnitTests.Infrastructure
         {
             // Arrange
             var queryable = GetTestQueryable();
-            
+
             // Act
             var result = queryable.Page(pageIndex, pageSize).ToList();
-            
+
             // Assert
             result.Should().BeEquivalentTo(queryable.Skip((pageIndex - 1) * pageSize).Take(pageSize));
         }

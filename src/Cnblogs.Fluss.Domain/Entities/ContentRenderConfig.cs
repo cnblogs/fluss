@@ -4,42 +4,42 @@ using Cnblogs.Fluss.Domain.Abstractions;
 namespace Cnblogs.Fluss.Domain.Entities
 {
     /// <summary>
-    /// 内容块渲染配置。
+    /// Render configs for <see cref="ContentBlock"/>.
     /// </summary>
     public class ContentRenderConfig : Entity<long>
     {
         /// <summary>
-        /// 内容块 Id。
+        /// The id of <see cref="ContentBlock" /> it belongs.
         /// </summary>
         public Guid ContentBlockId { get; set; }
 
         /// <summary>
-        /// 渲染器 Id。
+        /// The id of renderer it uses.
         /// </summary>
         public Guid RendererId { get; set; }
 
         /// <summary>
-        /// 渲染器顺序。
+        /// The order of this config in render pipeline.
         /// </summary>
         public int Order { get; set; }
 
         /// <summary>
-        /// 渲染器配置。
+        /// The config for renderer to use, usually a json string.
         /// </summary>
         public string RendererData { get; set; } = string.Empty;
 
         /// <summary>
-        /// 软删除标记。
+        /// Soft-deletion mark.
         /// </summary>
         public bool IsExist { get; set; } = true;
 
         /// <summary>
-        /// 添加时间。
+        /// Creation time.
         /// </summary>
         public DateTimeOffset DateCreated { get; set; } = DateTimeOffset.Now;
 
         /// <summary>
-        /// 上次修改时间。
+        /// Last updated time.
         /// </summary>
         public DateTimeOffset DateUpdated { get; set; } = DateTimeOffset.Now;
     }

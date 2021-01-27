@@ -25,7 +25,7 @@ namespace Cnblogs.Fluss.FunctionalTests
                 services =>
                 {
                     var dbDescriptor =
-                        services.SingleOrDefault(d => d.ServiceType == typeof(DbContextOptions<BlogDbContext>));
+                        services.Single(d => d.ServiceType == typeof(DbContextOptions<BlogDbContext>));
                     services.Remove(dbDescriptor);
                     var conn = new SqliteConnection("Filename=:memory:;Foreign Keys=False");
                     conn.Open();

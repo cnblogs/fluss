@@ -8,8 +8,15 @@ using Polly;
 
 namespace Cnblogs.Fluss.Infrastructure
 {
+    /// <summary>
+    /// Some methods for seeding database.
+    /// </summary>
     public static class SeedData
     {
+        /// <summary>
+        /// Migrate database and seed it.
+        /// </summary>
+        /// <param name="context">The <see cref="BlogDbContext"/> to use.</param>
         public static void MigrateAndSeed(BlogDbContext context)
         {
             var policy = CreatePolicy();
@@ -26,6 +33,10 @@ namespace Cnblogs.Fluss.Infrastructure
                 });
         }
 
+        /// <summary>
+        /// Seed database.
+        /// </summary>
+        /// <param name="context">The <see cref="BlogDbContext"/> to use.</param>
         public static void Seed(BlogDbContext context)
         {
             var blog = new BlogSite { Title = "Fluss", SubTitle = "Cnblogs" };
@@ -34,7 +45,8 @@ namespace Cnblogs.Fluss.Infrastructure
             var body = new ContentBlock
             {
                 BlogId = blog.Id,
-                Content = "<p>content block can be referred</p>",
+                Raw = "<p>content block</p>",
+                Content = "<p>content block</p>",
                 RenderConfigs = new List<ContentRenderConfig> { new() { RendererId = Guid.Empty } }
             };
             var post = new BlogPost
