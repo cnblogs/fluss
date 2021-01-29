@@ -9,7 +9,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Render\src\Cnblogs.Fluss.Render.Abstractions\Cnblogs.Fluss.Render.Abstractions.csproj" />
       <ProjectReference Include="..\Render\src\Cnblogs.Fluss.Render\Cnblogs.Fluss.Render.csproj" />
     </ItemGroup>
 
