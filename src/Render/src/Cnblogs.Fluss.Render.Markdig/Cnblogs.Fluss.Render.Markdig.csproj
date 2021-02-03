@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Markdig" Version="0.23.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Cnblogs.Fluss.Render\Cnblogs.Fluss.Render.csproj" />
+    </ItemGroup>
+
+</Project>
