@@ -9,13 +9,15 @@ namespace Cnblogs.Fluss.Render.Extensions
 {
     internal class RenderPipelineBuilder : IRenderPipelineBuilder
     {
-        private readonly IServiceCollection _services;
         private readonly Dictionary<Guid, Type> _registry = new();
 
         public RenderPipelineBuilder(IServiceCollection services)
         {
-            _services = services;
+            Services = services;
         }
+
+        /// <inheritdoc />
+        public IServiceCollection Services { get; }
 
         /// <inheritdoc />
         public IRenderPipelineBuilder AddRenderer<TRenderer>()
@@ -35,7 +37,7 @@ namespace Cnblogs.Fluss.Render.Extensions
                 return ThrowIdAlreadyBeenRegistered(id, _registry[id].Name);
             }
 
-            _services.TryAddTransient<TRenderer>();
+            Services.TryAddTransient<TRenderer>();
             _registry.TryAdd(id, typeof(TRenderer));
             return this;
         }
@@ -45,7 +47,7 @@ namespace Cnblogs.Fluss.Render.Extensions
         /// </summary>
         internal void BuildPipeline()
         {
-            _services.Configure<RendererRegistry>(r => r.Registry = _registry);
+            Services.Configure<RendererRegistry>(r => r.Registry = _registry);
         }
 
         [DoesNotReturn]

@@ -2,6 +2,7 @@
     <PropertyGroup>
         <Nullable>enable</Nullable>
         <IsUnitTestProject Condition="$(MSBuildProjectName.EndsWith('Tests'))">true</IsUnitTestProject>
+        <IsFunctionalTestProject Condition="$(MSBuildProjectName.EndsWith('FunctionalTests'))">true</IsFunctionalTestProject>
     </PropertyGroup>
     
     <ItemGroup Condition="'$(MSBuildProjectExtension)' != '.dcproj'">
@@ -24,5 +25,9 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
+    </ItemGroup>
+    
+    <ItemGroup Condition="'(IsFunctionalTestProject)' == 'true' AND '$(MSBuildProjectExtension)' != '.dcproj'">
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="5.0.2"/>
     </ItemGroup>
 </Project>

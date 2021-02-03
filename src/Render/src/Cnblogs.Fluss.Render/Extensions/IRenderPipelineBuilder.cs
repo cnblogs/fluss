@@ -1,4 +1,5 @@
 using System;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Cnblogs.Fluss.Render.Extensions
 {
@@ -7,6 +8,11 @@ namespace Cnblogs.Fluss.Render.Extensions
     /// </summary>
     public interface IRenderPipelineBuilder
     {
+        /// <summary>
+        /// The <see cref="IServiceCollection"/> it uses.
+        /// </summary>
+        IServiceCollection Services { get; }
+
         /// <summary>
         /// Add renderer, with id from the <see cref="RendererIdAttribute"/> that <typeparamref name="TRenderer"/> contains.
         /// </summary>
