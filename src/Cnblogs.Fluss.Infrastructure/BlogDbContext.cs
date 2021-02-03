@@ -26,7 +26,7 @@ namespace Cnblogs.Fluss.Infrastructure
             modelBuilder.ApplyConfiguration(new BlogSiteMap());
             modelBuilder.ApplyConfiguration(new BlogPostMap());
             modelBuilder.ApplyConfiguration(new ContentBlockMap());
-            modelBuilder.ApplyConfiguration(new PostContentRecordMap());
+            modelBuilder.ApplyConfiguration(new ContentRenderConfigMap());
 
             if (Database.ProviderName == "Microsoft.EntityFrameworkCore.Sqlite")
             {

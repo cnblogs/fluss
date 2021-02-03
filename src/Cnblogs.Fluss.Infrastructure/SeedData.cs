@@ -8,8 +8,15 @@ using Polly;
 
 namespace Cnblogs.Fluss.Infrastructure
 {
+    /// <summary>
+    /// Some methods for seeding database.
+    /// </summary>
     public static class SeedData
     {
+        /// <summary>
+        /// Migrate database and seed it.
+        /// </summary>
+        /// <param name="context">The <see cref="BlogDbContext"/> to use.</param>
         public static void MigrateAndSeed(BlogDbContext context)
         {
             var policy = CreatePolicy();
@@ -26,12 +33,22 @@ namespace Cnblogs.Fluss.Infrastructure
                 });
         }
 
+        /// <summary>
+        /// Seed database.
+        /// </summary>
+        /// <param name="context">The <see cref="BlogDbContext"/> to use.</param>
         public static void Seed(BlogDbContext context)
         {
             var blog = new BlogSite { Title = "Fluss", SubTitle = "Cnblogs" };
             context.Add(blog);
             context.SaveChanges();
-            var body = new ContentBlock { BlogId = blog.Id, Content = "<p>content block can be referred</p>" };
+            var body = new ContentBlock
+            {
+                BlogId = blog.Id,
+                Raw = "<p>content block</p>",
+                Content = "<p>content block</p>",
+                RenderConfigs = new List<ContentRenderConfig> { new() { RendererId = Guid.Empty } }
+            };
             var post = new BlogPost
             {
                 Title = "Fluss is an open-source blog engine",
@@ -39,13 +56,9 @@ namespace Cnblogs.Fluss.Infrastructure
                     "based on .NET，fluss can save and display your work plan or blog post. Content block referring can save your time of maintaining same content between different posts",
                 AutoDesc =
                     "based on .NET，fluss can save and display your work plan or blog posts. Content block referring can save your time of maintaining same content between different posts",
-                ContentRecords = new List<PostContentRecord>()
+                ContentBlocks = new List<ContentBlock> { body }
             };
-            post.ContentRecords.Add(new PostContentRecord { BlogPost = post, ContentBlock = body, Order = 2 });
             blog.BlogPosts = new List<BlogPost> { post };
-            context.SaveChanges();
-            var referBlock = new ContentBlock { BlogId = blog.Id, Refer = body.Id };
-            post.ContentRecords.Add(new PostContentRecord { BlogPost = post, ContentBlock = referBlock, Order = 1 });
             context.SaveChanges();
         }
 

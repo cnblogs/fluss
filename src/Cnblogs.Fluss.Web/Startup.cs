@@ -4,6 +4,7 @@ using Cnblogs.Fluss.Domain;
 using Cnblogs.Fluss.Domain.Entities;
 using Cnblogs.Fluss.Infrastructure;
 using Cnblogs.Fluss.Infrastructure.Repositories;
+using Cnblogs.Fluss.Render.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -36,8 +37,10 @@ namespace Cnblogs.Fluss.Web
                         sqlServerOption.EnableRetryOnFailure(3, TimeSpan.FromSeconds(5), null);
                     }));
 
+            services.AddHttpClient();
             services.AddScoped<IBlogSiteRepository, BlogSiteRepository>();
             services.AddControllersWithViews();
+            services.AddRenderPipeline();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

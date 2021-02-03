@@ -8,4 +8,8 @@
         <PackageReference Include="MediatR" Version="9.0.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Render\src\Cnblogs.Fluss.Render\Cnblogs.Fluss.Render.csproj" />
+    </ItemGroup>
+
 </Project>

@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:5.0-focal AS base
 RUN apt-get update && apt-get install -y curl
 WORKDIR /app
 EXPOSE 80
@@ -12,7 +12,10 @@ RUN yarn install --forzen-lockfile
 COPY ["src/Cnblogs.Fluss.Web/wwwroot/", "."]
 RUN yarn build
 
-FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:5.0-focal AS build
+WORKDIR /src/src/Render
+COPY src/Render/src/*/*.csproj ./
+RUN for file in $(ls *.csproj); do mkdir -p src/${file%.*}/ && mv $file src/${file%.*}/; done
 WORKDIR /src
 COPY *.props src/*/*.csproj ./
 RUN for file in $(ls *.csproj); do mkdir -p src/${file%.*}/ && mv $file src/${file%.*}/; done
